@@ -13,6 +13,7 @@ gem 'puma'
 gem 'figaro'
 gem 'react-rails'
 gem 'rails_12factor'
+gem 'devise'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bullet', group: :development
 
