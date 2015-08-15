@@ -1,15 +1,53 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>CodeCuts</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Code Cuts</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Parallax Template - Materialize</title>
+
+  <!-- CSS  -->
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link href='https://fonts.googleapis.com/css?family=Magra' rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-<%= yield %>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <div class="row">
+        <%= link_to "Lessons", lessons_path, class: 'col s2 offset-4' %>
+        <%= link_to "Forums", forums_path, class: 'col s2' %>
+        <%= link_to "Instructors", users_path, class: 'col s2' %>
 
-</body>
+        <!-- this is not best practices!!!! -->
+        <% if user_signed_in? %>
+          <%= link_to "My Profile", current_user, class: 'col s2'  %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link', class: 'col s2'   %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, :class => 'navbar-link', class: 'col s2'   %>
+        <% end %>
+    </div>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+  <%= yield %>
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About Us</h5>
+          <p class="grey-text text-lighten-4">Code Cuts is a collective of software developers and designers based in Austin, TX</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </body>
 </html>
