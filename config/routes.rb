@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   resources :forums
   devise_for :users
   resources :users
-
-  root to: "forums#index"
+  get "/home", to: "welcome#home"
+  root to: "welcome#home"
 end
